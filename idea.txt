@@ -1,0 +1,5 @@
+Que nos de el df y la variable objetivo y que tipo de balanceo quiere (under,over(normal o datos sinteticos) o combinacion)
+
+fichero vacio, sin na, que no exista
+
+aplicar el filtro de preprocesado y heredar la clase

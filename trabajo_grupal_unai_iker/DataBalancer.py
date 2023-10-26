@@ -3,9 +3,22 @@ import numpy as np
 
 class DataPreprocessing:
     def clean_data(self, df):
-        if df.isnull().any().any():
-            df = df.dropna()
-        return df
+        try:
+            # Verificar si el DataFrame es nulo o vacío
+            if df is None or df.empty:
+                raise ValueError("El DataFrame es nulo o vacío.")
+
+            # Verificar si hay valores faltantes (NAs) en el DataFrame
+            if df.isnull().any().any():
+                # Si hay NAs, eliminar las filas con valores faltantes
+                df = df.dropna()
+                return df
+            else:
+                raise ValueError("No se encontraron valores faltantes en el DataFrame.")
+
+        except Exception as e:
+            print(f"Error al limpiar datos: {str(e)}")
+            return None
 
 class DataBalancer(DataPreprocessing):
 
@@ -76,7 +89,7 @@ class DataBalancer(DataPreprocessing):
     def oversampling_sdv(self):
         from sdv.metadata import SingleTableMetadata
         from sdv.single_table import GaussianCopulaSynthesizer
-        import random
+        # import random
         df = self.preprocessed_df
         print(df)
         clase_min = pd.DataFrame(self.preprocessed_df[self.target_column].value_counts().sort_values()).index[0]
@@ -117,7 +130,7 @@ class DataBalancer(DataPreprocessing):
         return X_res_df,y_res_df
 
 if __name__ == '__main__':
-    df = pd.read_csv('C:/Users/Asus/Documents/Mondragon/bdata4año/Programacion/Trabajo_grupal/Thyroids.csv')
+    df = pd.read_csv('C:/Users/Asus/Documents/Mondragon/bdata4año/Programacion/Trabajo_grupal/trabajo_grupal_unai_iker/Thyroids.csv')
     datos = DataBalancer('oversampling_sdv')
     df_balanceado = datos.balance_data(df,'clase')
     df_balanceado

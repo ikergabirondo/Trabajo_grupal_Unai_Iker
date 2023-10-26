@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[project]
+name = "example_package_iker8"
+version = "0.0.1"
+authors = [
+  { name="iker8", email="ikergabirondo8@gmail.com" },
+]
+description = "Ejemplo de como crear un paquete"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ikergabirondo/subir_pypi"
+"Bug Tracker" = "https://github.com/ikergabirondo/subir_pypi/issues"
